@@ -1,0 +1,15 @@
+apiVersion: skaffold/v2beta26
+kind: Config
+
+metadata:
+  name: admin
+
+build:
+  artifacts:
+  - image: kathiravan88/admin
+    context: .
+    jib: {}
+deploy:
+  kubectl:
+    manifests:
+      - target/classes/META-INF/dekorate/*.yml
