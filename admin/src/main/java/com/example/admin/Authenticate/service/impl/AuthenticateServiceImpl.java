@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import com.example.admin.Authenticate.config.JwtTokenUtil;
 import com.example.admin.Authenticate.model.JwtResponse;
 import com.example.admin.Authenticate.model.RefreshToken;
 import com.example.admin.Authenticate.service.AuthenticateService;
+import com.example.admin.Authenticate.service.JwtTokenUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;

@@ -1,8 +1,8 @@
 package com.example.admin.Authenticate.controller;
-import com.example.admin.Authenticate.config.JwtUserDetailsService;
 import com.example.admin.Authenticate.model.JwtRequest;
 import com.example.admin.Authenticate.model.JwtResponse;
 import com.example.admin.Authenticate.service.AuthenticateService;
+import com.example.admin.Authenticate.service.JwtUserDetailsService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
