@@ -1,0 +1,15 @@
+.git
+node_modules
+.gitignore
+npm-debug.log
+Dockerfile*
+docker-compose*
+README.md
+LICENSE
+.vscode
+*.Dockerfile
+kubernetes.yml
+**/*.swp
+**/*.tsx~
+**/*.swn
+**/*.swo

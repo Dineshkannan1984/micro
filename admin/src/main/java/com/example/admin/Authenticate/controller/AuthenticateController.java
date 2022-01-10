@@ -4,8 +4,6 @@ import com.example.admin.Authenticate.model.JwtResponse;
 import com.example.admin.Authenticate.service.AuthenticateService;
 import com.example.admin.Authenticate.service.JwtUserDetailsService;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path="/admin")
 public class AuthenticateController {
-    private static Logger logger = LoggerFactory.getLogger(AuthenticateController.class);
+    // private static Logger logger = LoggerFactory.getLogger(AuthenticateController.class);
     
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -31,13 +29,6 @@ public class AuthenticateController {
 
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
-
-    @RequestMapping(path="/login" , method=RequestMethod.GET)
-    public String login(){
-
-        logger.info("first log");
-        return "login controller testing123";
-    }
 
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAccessToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
