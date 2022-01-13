@@ -1,4 +1,4 @@
-package com.example.admin.Authenticate.config;
+package com.example.admin.authenticate.config;
 
 import java.io.IOException;
 import java.io.Serializable;

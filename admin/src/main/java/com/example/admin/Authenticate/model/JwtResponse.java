@@ -1,4 +1,4 @@
-package com.example.admin.Authenticate.model;
+package com.example.admin.authenticate.model;
 
 import java.io.Serializable;
 

@@ -1,0 +1,106 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    app.dekorate.io/vcs-url: <<unknown>>
+    app.dekorate.io/commit-id: e90a95b4de97dcd6cba418f9d28162924d496ef7
+  labels:
+    app.kubernetes.io/name: test
+    app.kubernetes.io/version: 0.0.1-SNAPSHOT
+  name: test
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/name: test
+    app.kubernetes.io/version: 0.0.1-SNAPSHOT
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    app.dekorate.io/vcs-url: <<unknown>>
+    app.dekorate.io/commit-id: e90a95b4de97dcd6cba418f9d28162924d496ef7
+  labels:
+    app.kubernetes.io/name: test
+    app.kubernetes.io/version: 0.0.1-SNAPSHOT
+  name: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test
+      app.kubernetes.io/version: 0.0.1-SNAPSHOT
+  template:
+    metadata:
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        app.dekorate.io/vcs-url: <<unknown>>
+        app.dekorate.io/commit-id: e90a95b4de97dcd6cba418f9d28162924d496ef7
+      labels:
+        app.kubernetes.io/name: test
+        app.kubernetes.io/version: 0.0.1-SNAPSHOT
+    spec:
+      containers:
+        - env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          image: kathiravan88/test
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/info
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 10
+          name: test
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 10
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    app.dekorate.io/vcs-url: <<unknown>>
+    app.dekorate.io/commit-id: e90a95b4de97dcd6cba418f9d28162924d496ef7
+  labels:
+    app.kubernetes.io/name: test
+    app.kubernetes.io/version: 0.0.1-SNAPSHOT
+  name: test
+spec:
+  rules:
+    - host: ""
+      http:
+        paths:
+          - backend:
+              service:
+                name: test
+                port:
+                  name: http
+            path: /test
+            pathType: Prefix

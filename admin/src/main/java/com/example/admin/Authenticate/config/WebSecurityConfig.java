@@ -1,4 +1,4 @@
-package com.example.admin.Authenticate.config;
+package com.example.admin.authenticate.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -55,9 +55,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.csrf().disable()
 				// dont authenticate this particular request
 				.authorizeRequests()
-				.antMatchers("/admin/authenticate").permitAll()
-				.antMatchers("/admin/refresh").permitAll()
+				.antMatchers("/authenticate").permitAll()
+				.antMatchers("/refresh").permitAll()
+				.antMatchers("/actuator").permitAll()
 				.antMatchers("/actuator/**/*").permitAll()
+				.antMatchers("/config").permitAll()
 				// all other requests need to be authenticated
 				.anyRequest().authenticated()
 				// make sure we use stateless session; session won't be used to

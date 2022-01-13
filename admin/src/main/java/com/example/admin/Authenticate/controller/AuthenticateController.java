@@ -1,8 +1,8 @@
-package com.example.admin.Authenticate.controller;
-import com.example.admin.Authenticate.model.JwtRequest;
-import com.example.admin.Authenticate.model.JwtResponse;
-import com.example.admin.Authenticate.service.AuthenticateService;
-import com.example.admin.Authenticate.service.JwtUserDetailsService;
+package com.example.admin.authenticate.controller;
+import com.example.admin.authenticate.model.JwtRequest;
+import com.example.admin.authenticate.model.JwtResponse;
+import com.example.admin.authenticate.service.AuthenticateService;
+import com.example.admin.authenticate.service.JwtUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path="/admin")
 public class AuthenticateController {
     // private static Logger logger = LoggerFactory.getLogger(AuthenticateController.class);
     

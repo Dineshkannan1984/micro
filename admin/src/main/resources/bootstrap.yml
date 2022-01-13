@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: admin
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+        sources:
+          - name: admin
+          - name: app
+      secrets:
+        enable-api: true
+        enabled: true
+        sources:
+          - name: appsecret
+      reload:
+        enabled: false

@@ -1,4 +1,4 @@
-package com.example.admin.Authenticate.config;
+package com.example.admin.authenticate.config;
 
 import java.io.IOException;
 
@@ -7,8 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.admin.Authenticate.service.JwtTokenUtil;
-import com.example.admin.Authenticate.service.JwtUserDetailsService;
+import com.example.admin.authenticate.service.JwtTokenUtil;
+import com.example.admin.authenticate.service.JwtUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

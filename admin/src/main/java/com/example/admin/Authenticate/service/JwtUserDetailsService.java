@@ -1,4 +1,4 @@
-package com.example.admin.Authenticate.service;
+package com.example.admin.authenticate.service;
 
 import java.util.ArrayList;
 

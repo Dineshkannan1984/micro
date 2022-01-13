@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: admin
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+
+server:
+  servlet:
+    context-path: /admin
+
+admin.greeting: local
+
+jwt:
+  access.token:
+    secret: w23pRF5mdn
+    expiry: 99999
+  refresh.token:
+    expiry: 99999
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

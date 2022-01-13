@@ -1,4 +1,4 @@
-package com.example.admin.Authenticate.service;
+package com.example.admin.authenticate.service;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.function.Function;
 
-import com.example.admin.Authenticate.model.RefreshToken;
+import com.example.admin.authenticate.model.RefreshToken;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;

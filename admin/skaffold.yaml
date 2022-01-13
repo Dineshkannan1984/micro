@@ -12,4 +12,5 @@ build:
 deploy:
   kubectl:
     manifests:
-      - target/classes/META-INF/dekorate/*.yml
+      - kubernetes.yml
+      # - target/classes/META-INF/dekorate/*.yml

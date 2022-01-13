@@ -1,0 +1,23 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: admin
+  namespace: default
+data:
+  admin.greeting: test1
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: app
+  namespace: default
+data:
+  base.url: test.local1
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: appsecret
+  namespace: default
+data:
+  pass: cGFzc2NoYW5nZQ==

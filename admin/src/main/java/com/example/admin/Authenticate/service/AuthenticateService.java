@@ -1,6 +1,6 @@
-package com.example.admin.Authenticate.service;
+package com.example.admin.authenticate.service;
 
-import com.example.admin.Authenticate.model.JwtResponse;
+import com.example.admin.authenticate.model.JwtResponse;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
