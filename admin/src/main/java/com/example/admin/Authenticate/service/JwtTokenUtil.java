@@ -9,8 +9,10 @@ import java.util.UUID;
 import java.util.function.Function;
 
 import com.example.admin.authenticate.model.RefreshToken;
+import com.example.admin.configuration.Config;
+import com.example.admin.configuration.Secret;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -23,15 +25,11 @@ public class JwtTokenUtil implements Serializable {
 
 	private static final long serialVersionUID = -2550185165626007488L;
 
-	@Value("${jwt.access.token.secret}")
-	private String jwtAccessTokenSecret="Pvad72yECD";
+	@Autowired
+	Config config;
 
-	@Value("${jwt.access.token.expiry}")
-	private int jwtAccessTokenExpiry=30;
-
-	@Value("${jwt.refresh.token.expiry}")
-	private int jwtRfreshTokenExpiry=35;
-
+	@Autowired
+	Secret secret;
 
 	//retrieve username from jwt token
 	public String getUsernameFromToken(String token) {
@@ -49,7 +47,7 @@ public class JwtTokenUtil implements Serializable {
 	}
     //for retrieveing any information from token we will need the secret key
 	private Claims getAllClaimsFromToken(String token) {
-		return Jwts.parser().setSigningKey(jwtAccessTokenSecret).parseClaimsJws(token).getBody();
+		return Jwts.parser().setSigningKey(secret.getJwtAccessTokenSecret()).parseClaimsJws(token).getBody();
 	}
 
 	//check if the token has expired
@@ -72,8 +70,8 @@ public class JwtTokenUtil implements Serializable {
 	private String doGenerateToken(Map<String, Object> claims, String subject) {
 
 		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + jwtAccessTokenExpiry * 60 * 1000))
-				.signWith(SignatureAlgorithm.HS512, jwtAccessTokenSecret).compact();
+				.setExpiration(new Date(System.currentTimeMillis() + config.getJwtAccessTokenExpiry() * 60 * 1000))
+				.signWith(SignatureAlgorithm.HS512, secret.getJwtAccessTokenSecret()).compact();
 	}
 
 	//validate token

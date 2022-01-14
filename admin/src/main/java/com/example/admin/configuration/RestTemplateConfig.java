@@ -1,4 +1,4 @@
-package com.example.admin.RestTemplate;
+package com.example.admin.configuration;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,8 +32,7 @@ public class RestTemplateConfig {
   @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
   public RestTemplate restTemplate(HttpServletRequest inReq) {
     // retrieve the auth header from incoming request
-    final String authHeader = 
-      inReq.getHeader(HttpHeaders.AUTHORIZATION);
+    final String authHeader = inReq.getHeader(HttpHeaders.AUTHORIZATION);
     final RestTemplate restTemplate = new RestTemplate();
     // add a token if an incoming auth header exists, only
     if (authHeader != null && !authHeader.isEmpty()) {

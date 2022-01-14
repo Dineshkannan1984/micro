@@ -20,5 +20,14 @@ public class Config implements Serializable{
     private String greeting;
 
     @Value("${base.url:empty}")
-    private String testurl;
+    private String testurl;	
+    
+    @Value("${jwt.access.token.secret}")
+	private String jwtAccessTokenSecret;
+
+	@Value("${jwt.access.token.expiry}")
+	private int jwtAccessTokenExpiry;
+
+	@Value("${jwt.refresh.token.expiry}")
+	private int jwtRfreshTokenExpiry;
 }

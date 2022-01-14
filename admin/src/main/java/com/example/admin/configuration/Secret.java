@@ -18,4 +18,7 @@ public class Secret implements Serializable{
 
     @Value("${pass:empty}")
     private String pass;
+    
+    @Value("${jwt.access.token.secret}")
+	private String jwtAccessTokenSecret;
 }

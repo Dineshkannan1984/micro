@@ -24,3 +24,25 @@ management:
     web:
       exposure:
         include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+management.health.circuitbreakers.enabled: true
+management.health.ratelimiters.enabled: true
+
+
+
+resilience4j.circuitbreaker:
+  instances:
+    peer:
+      registerHealthIndicator: true
+      slidingWindowSize: 5
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: COUNT_BASED
+      minimumNumberOfCalls: 5
+      waitDurationInOpenState: 50s
+      failureRateThreshold: 60
+      eventConsumerBufferSize: 10
+      slowCallRateThreshold: 50
+      slowCallDurationThreshold: 2000
