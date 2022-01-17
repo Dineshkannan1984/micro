@@ -1,4 +1,4 @@
-package com.example.admin.configuration;
+package com.example.admin.peer.config;
 
 import javax.servlet.http.HttpServletRequest;
 

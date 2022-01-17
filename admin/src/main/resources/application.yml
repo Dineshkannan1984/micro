@@ -28,10 +28,15 @@ management:
     health:
       show-details: always
 
+# spring.boot.admin.server.url: http://localhost:8080/admin/portal
+# spring.boot.admin.api-path: /instances
+spring.boot.admin.ui.public-url: http://localhost:8090/
+spring.boot.admin.client.url: http://admin.default.svc.cluster.local:80/admin/
+
 management.health.circuitbreakers.enabled: true
 management.health.ratelimiters.enabled: true
 
-
+kafka.bootstrap-servers: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
 
 resilience4j.circuitbreaker:
   instances:

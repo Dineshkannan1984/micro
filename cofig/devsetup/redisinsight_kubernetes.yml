@@ -1,0 +1,82 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: redis-insight-config
+  namespace: redis
+data:
+  KAFKA_BROKERS: my-cluster-kafka-bootstrap:9092
+  SERVER_BASEPATH: redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: redis-insight
+    app.kubernetes.io/version: 1.11.0
+  name: redis-insight
+  namespace: redis
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/name: redis-insight
+    app.kubernetes.io/version: 1.11.0
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: redis-insight
+    app.kubernetes.io/version: 1.11.0
+  name: redis-insight
+  namespace: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: redis-insight
+      app.kubernetes.io/version: 1.11.0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: redis-insight
+        app.kubernetes.io/version: 1.11.0
+    spec:
+      containers:
+        - envFrom:
+          - configMapRef:
+              name: redis-insight-config
+          image: redislabs/redisinsight:1.11.0
+          imagePullPolicy: IfNotPresent
+          name: redis-insight
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  labels:
+    app.kubernetes.io/name: redis-insight
+    app.kubernetes.io/version: 1.11.0
+  name: redis-insight
+  namespace: redis
+spec:
+  rules:
+    - host: ""
+      http:
+        paths:
+          - backend:
+              service:
+                name: redis-insight
+                port:
+                  name: http
+            path: /redis
+            pathType: Prefix

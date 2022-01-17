@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class logging {
 
-    @Before("execution(* com.example.admin..controller..*.*(..)) || execution(* com.example.admin..controller..*.*(..))")
+    @Before("execution(* com.example.admin..controller..*.*(..)) || execution(* com.example.admin..service..*.*(..))")
     public void logBeforeMethodCall(JoinPoint joinPoint) {
         try {
             logInfo("Execution start:",joinPoint);
@@ -26,7 +26,7 @@ public class logging {
         }
     }
 
-    @After("execution(* com.example.admin..controller..*.*(..)) || execution(* com.example.admin..controller..*.*(..))")
+    @After("execution(* com.example.admin..controller..*.*(..)) || execution(* com.example.admin..service..*.*(..))")
     public void logAfterMethodCall(JoinPoint joinPoint) {
         try {
             logInfo("Execution end:",joinPoint);

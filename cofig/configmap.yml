@@ -20,4 +20,4 @@ metadata:
   name: appsecret
   namespace: default
 data:
-  pass: cGFzc2NoYW5nZQ==
+  db.secret: cGFzc2NoYW5nZQ==

@@ -1,5 +1,6 @@
 package com.example.admin.serviceA.controller;
 
+import com.example.admin.kafka.producers.ProducerExample;
 import com.example.admin.peer.test.service.TestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,13 @@ public class ServiceAController {
 
     @Autowired
     TestService testService;
+
+    @Autowired
+    ProducerExample producerExample;
     
     @RequestMapping(path="/test" , method=RequestMethod.GET)
     public String getMessage(){
+        producerExample.sendMessage("message", "topic1");
         return testService.getMessage();
     }
 }
