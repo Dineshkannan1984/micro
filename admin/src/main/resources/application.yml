@@ -38,6 +38,12 @@ management.health.ratelimiters.enabled: true
 
 kafka.bootstrap-servers: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
 
+spring.cache.redis.key-prefix: admin.
+
+spring.redis:
+  host: redis.redis.svc.cluster.local
+  port: 6379
+
 resilience4j.circuitbreaker:
   instances:
     peer:

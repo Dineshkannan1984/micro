@@ -4,6 +4,7 @@ import com.example.admin.kafka.producers.ProducerExample;
 import com.example.admin.peer.test.service.TestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ public class ServiceAController {
     ProducerExample producerExample;
     
     @RequestMapping(path="/test" , method=RequestMethod.GET)
+    @Cacheable(value = "itemCache")
     public String getMessage(){
         producerExample.sendMessage("message", "topic1");
         return testService.getMessage();

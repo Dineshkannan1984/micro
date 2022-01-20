@@ -61,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/actuator/**/*").permitAll()
 				.antMatchers("/config").permitAll()
 				// all other requests need to be authenticated
-				.anyRequest().authenticated()
+				// .anyRequest().authenticated()
 				// make sure we use stateless session; session won't be used to
 				// store user's state.
 				.and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)

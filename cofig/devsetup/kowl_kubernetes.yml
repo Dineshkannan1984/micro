@@ -15,6 +15,9 @@ metadata:
 data:
   KAFKA_BROKERS: my-cluster-kafka-bootstrap:9092
   SERVER_BASEPATH: kowl
+  CONNECT_ENABLED: "true"
+  CONNECT_CLUSTERS_NAME: my-connect-cluster
+  CONNECT_CLUSTERS_URL: http://my-connect-cluster-connect-api:8083
 ---
 apiVersion: v1
 kind: Service

@@ -5,8 +5,9 @@ metadata:
   name: redis-insight-config
   namespace: redis
 data:
-  KAFKA_BROKERS: my-cluster-kafka-bootstrap:9092
-  SERVER_BASEPATH: redis
+  RIHOST: "0.0.0.0"
+  RIPORT: "8080"
+  BASE_PATH: redis
 ---
 apiVersion: v1
 kind: Service
@@ -78,5 +79,5 @@ spec:
                 name: redis-insight
                 port:
                   name: http
-            path: /redis
+            path: /
             pathType: Prefix

@@ -1,0 +1,2 @@
+@REM kubectl create secret generic regcred --from-file=.dockerconfigjson=C:/Users/Kathir/.docker/config.json --type=kubernetes.io/dockerconfigjson
+kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=kathiravan88 --docker-password=****** --docker-email=kathiravan88@gmail.com
