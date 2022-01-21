@@ -33,4 +33,7 @@ public class Config implements Serializable{
 
 	@Value("${kafka.bootstrap-servers}")
 	private String kafkaBootstrapServers;
+
+	@Value("${service.environment}")
+	private String appEnvironment;
 }

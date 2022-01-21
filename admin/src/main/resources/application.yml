@@ -6,6 +6,10 @@ spring:
       config:
         enabled: true
 
+service.environment: local
+spring.cache.type: none
+
+
 server:
   servlet:
     context-path: /admin
