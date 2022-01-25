@@ -13,6 +13,7 @@ metadata:
   namespace: default
 data:
   base.url: test.local1
+  service.environment: sit
 ---
 kind: Secret
 apiVersion: v1

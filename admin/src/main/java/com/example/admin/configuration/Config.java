@@ -31,9 +31,6 @@ public class Config implements Serializable{
 	@Value("${jwt.refresh.token.expiry}")
 	private int jwtRfreshTokenExpiry;
 
-	@Value("${kafka.bootstrap-servers}")
-	private String kafkaBootstrapServers;
-
 	@Value("${service.environment}")
 	private String appEnvironment;
 }

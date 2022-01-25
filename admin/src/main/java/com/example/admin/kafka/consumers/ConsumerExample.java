@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @ConditionalOnExpression("!'${service.environment}'.equalsIgnoreCase('local')")
 public class ConsumerExample {
 
-    @KafkaListener(topics = "topic1",groupId = "group-2")
+    @KafkaListener(topics = "topic1")
     void listener(String data) {
         log.info(data);
     }

@@ -5,7 +5,7 @@ import Home from './Home'
 import React from 'react';
 
 const App1 = React.lazy(
-  () => import('app1/App')
+  () => import('app1/App11')
 );
 
 function App() {

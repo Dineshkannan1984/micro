@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 // import './App.css';
 
-function App() {
+function App11() {
   return (
     <div>App1</div>
     // <div className="App">
@@ -12,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default App11;

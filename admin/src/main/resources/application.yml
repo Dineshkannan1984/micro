@@ -12,7 +12,7 @@ spring.cache.type: none
 
 server:
   servlet:
-    context-path: /admin
+    context-path: /${spring.application.name}
 
 admin.greeting: local
 
@@ -40,9 +40,13 @@ spring.boot.admin.client.url: http://admin.default.svc.cluster.local:80/admin/
 management.health.circuitbreakers.enabled: true
 management.health.ratelimiters.enabled: true
 
-kafka.bootstrap-servers: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
+spring.kafka:
+  bootstrap-servers: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
+  client-id: ${spring.application.name}
+  consumer.client-id: ${spring.application.name}
+  consumer.group-id: ${spring.application.name}-consumer-group
 
-spring.cache.redis.key-prefix: admin.
+spring.cache.redis.key-prefix: ${spring.application.name}.
 
 spring.redis:
   host: redis.redis.svc.cluster.local
