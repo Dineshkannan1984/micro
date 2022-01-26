@@ -22,7 +22,7 @@ public class kafkaLocal {
     @Around("execution(* com.example.admin..kafka.producers..*.*(..))")
     public Object profileKafkaProducers(ProceedingJoinPoint proceedingJoinPoint) throws Throwable 
     {
-        if (config.getAppEnvironment() != null && config.getAppEnvironment().equalsIgnoreCase("local"))
+        if (config.getActiveProfile() != null && config.getActiveProfile().equalsIgnoreCase("local"))
         {
             log.info("message pushed to kafka topic");
         }

@@ -16,11 +16,8 @@ public class Config implements Serializable{
 
 	private static final long serialVersionUID = -8091879091924046844L;
 
-    @Value("${admin.greeting:empty}")
-    private String greeting;
-
-    @Value("${base.url:empty}")
-    private String testurl;	
+	@Value("${spring.profiles.active:null}")
+	private String activeProfile;
     
     @Value("${jwt.access.token.secret}")
 	private String jwtAccessTokenSecret;
@@ -30,7 +27,4 @@ public class Config implements Serializable{
 
 	@Value("${jwt.refresh.token.expiry}")
 	private int jwtRfreshTokenExpiry;
-
-	@Value("${service.environment}")
-	private String appEnvironment;
 }

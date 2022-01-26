@@ -5,6 +5,8 @@ metadata:
   namespace: default
 data:
   admin.greeting: test1
+  spring.application.name: admin
+  spring.boot.admin.ui.public-url: http://localhost:8090/
 ---
 kind: ConfigMap
 apiVersion: v1
@@ -12,8 +14,39 @@ metadata:
   name: app
   namespace: default
 data:
-  base.url: test.local1
-  service.environment: sit
+  spring.cloud.kubernetes.config.enable: "true"
+  spring.cache.type: redis
+  server.servlet.context-path: /${spring.application.name}
+  jwt.access.token.secret: w23pRF5mdn
+  jwt.access.token.expiry: "99999"
+  jwt.refresh.token.expiry: "99999"
+  management.endpoints.web.exposure.include: "*"
+  management.endpoint.health.show-details: always
+  spring.boot.admin.client.url: http://admin.default.svc.cluster.local:80/admin/
+  management.health.circuitbreakers.enabled: "true"
+  management.health.ratelimiters.enabled: "true"
+  spring.kafka.bootstrap-servers: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
+  spring.kafka.client-id: ${spring.application.name}
+  spring.kafka.consumer.client-id: ${spring.application.name}
+  spring.kafka.consumer.group-id: ${spring.application.name}-consumer-group
+  spring.kafka.consumer.key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  spring.kafka.consumer.value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+  spring.kafka.consumer.properties.spring.json.trusted.packages: "*"
+  spring.kafka.producer.key-serializer: org.apache.kafka.common.serialization.StringSerializer
+  spring.kafka.producer.value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  spring.cache.redis.key-prefix: ${spring.application.name}.
+  spring.redis.host: redis.redis.svc.cluster.local
+  spring.redis.port: "6379"
+  resilience4j.circuitbreaker.instances.peer.registerHealthIndicator: "true"
+  resilience4j.circuitbreaker.instances.peer.slidingWindowSize: "5"
+  resilience4j.circuitbreaker.instances.peer.permittedNumberOfCallsInHalfOpenState: "3"
+  resilience4j.circuitbreaker.instances.peer.slidingWindowType: COUNT_BASED
+  resilience4j.circuitbreaker.instances.peer.minimumNumberOfCalls: "5"
+  resilience4j.circuitbreaker.instances.peer.waitDurationInOpenState: 50s
+  resilience4j.circuitbreaker.instances.peer.failureRateThreshold: "60"
+  resilience4j.circuitbreaker.instances.peer.eventConsumerBufferSize: "10"
+  resilience4j.circuitbreaker.instances.peer.slowCallRateThreshold: "50"
+  resilience4j.circuitbreaker.instances.peer.slowCallDurationThreshold: "2000"
 ---
 kind: Secret
 apiVersion: v1

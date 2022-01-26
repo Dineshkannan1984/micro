@@ -31,7 +31,7 @@ public class AuthenticateServiceImpl implements AuthenticateService{
 
         refreshTokenMap.put(refreshToken.getToken(), refreshToken);
 
-        return new JwtResponse(acessToken,refreshToken.getToken(),"Bearer");
+        return new JwtResponse(acessToken,refreshToken.getToken());
     }
 
     @Override
@@ -46,7 +46,7 @@ public class AuthenticateServiceImpl implements AuthenticateService{
         refreshTokenMap.put(refreshToken.getToken(), refreshToken);
         refreshTokenMap.remove(refreshRequest.getRefreshToken());
 
-        return new JwtResponse(acessToken,refreshToken.getToken(),"Bearer");
+        return new JwtResponse(acessToken,refreshToken.getToken());
     }
 
     private void validateRefresh(String token) throws Exception {

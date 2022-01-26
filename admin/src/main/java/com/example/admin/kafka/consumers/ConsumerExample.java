@@ -1,6 +1,8 @@
 package com.example.admin.kafka.consumers;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import com.example.admin.serviceA.model.Testpojo;
+
+import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -8,11 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-@ConditionalOnExpression("!'${service.environment}'.equalsIgnoreCase('local')")
+@Profile("!local")
 public class ConsumerExample {
 
     @KafkaListener(topics = "topic1")
-    void listener(String data) {
-        log.info(data);
+    void listener(Testpojo data) {
+        log.info(data.toString());
     }
 }

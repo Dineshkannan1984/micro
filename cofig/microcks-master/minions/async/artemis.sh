@@ -1,1 +1,0 @@
-docker-compose -f artemis-docker-compose.yml up

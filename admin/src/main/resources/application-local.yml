@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: admin
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+
+spring.cache.type: none
+
+
+server:
+  servlet:
+    context-path: /${spring.application.name}
+
+jwt:
+  access.token:
+    secret: w23pRF5mdn
+    expiry: 99999
+  refresh.token:
+    expiry: 99999
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+# spring.boot.admin.server.url: http://localhost:8080/admin/portal
+# spring.boot.admin.api-path: /instances
+spring.boot.admin.ui.public-url: http://localhost:8090/
+spring.boot.admin.client.url: http://admin.default.svc.cluster.local:80/admin/
+
+management.health.circuitbreakers.enabled: true
+management.health.ratelimiters.enabled: true
+
+# spring.kafka:
+#   bootstrap-servers: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
+#   client-id: ${spring.application.name}
+#   consumer.client-id: ${spring.application.name}
+#   consumer.group-id: ${spring.application.name}-consumer-group
+
+# spring.cache.redis.key-prefix: ${spring.application.name}.
+
+# spring.redis:
+#   host: redis.redis.svc.cluster.local
+#   port: 6379
+
+resilience4j.circuitbreaker:
+  instances:
+    peer:
+      registerHealthIndicator: true
+      slidingWindowSize: 5
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: COUNT_BASED
+      minimumNumberOfCalls: 5
+      waitDurationInOpenState: 50s
+      failureRateThreshold: 60
+      eventConsumerBufferSize: 10
+      slowCallRateThreshold: 50
+      slowCallDurationThreshold: 2000

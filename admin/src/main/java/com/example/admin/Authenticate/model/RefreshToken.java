@@ -3,11 +3,9 @@ package com.example.admin.authenticate.model;
 import java.io.Serializable;
 import java.time.Instant;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class RefreshToken implements Serializable{
 
     private static final long serialVersionUID = -8091879092341046844L;
